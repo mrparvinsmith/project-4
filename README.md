@@ -6,3 +6,7 @@ This project will be a transportaion app for Santa Monica that provides real-tim
 I will be accessing [an api for parking](https://parking.api.smgov.net/) and [an api for the metro](http://developer.metro.net/). 
 
 This app will be made using the MEAN stack. 
+
+[ERD](https://github.com/mrparvinsmith/project-4/blob/master/planning/ERD.jpg)
+
+[Wireframe](https://github.com/mrparvinsmith/project-4/blob/master/planning/Wireframe.jpg)
