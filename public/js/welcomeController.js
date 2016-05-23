@@ -19,7 +19,8 @@ function LoginController(){
   function login(){
     $http.post('/login', self.newSession)
       .then(function(response){
-        // something
+        localStorage.setItem('token', JSON.stringify(response));
+        console.log(localStorage.getItem('token'));
       });
   }
 }

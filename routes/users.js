@@ -1,14 +1,15 @@
 var express = require('express');
 var router = express.Router();
-var controller = require('../controllers/users');
+var users = require('../controllers/users');
+var token = require('../controllers/token');
 
 router.route('/')
-  .get(controller.index)
-  .post(controller.create);
+  .get(token.verify, users.index)
+  .post(users.create);
 
 router.route('/:id')
-  .get(controller.show)
-  .put(controller.update)
-  .delete(controller.destroy);
+  .get(token.verify, users.show)
+  .put(token.verify, users.update)
+  .delete(token.verify, users.destroy);
 
 module.exports = router;
