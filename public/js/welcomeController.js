@@ -14,6 +14,14 @@ function WelcomeController(){
 function LoginController(){
   var self = this;
   self.message = 'connected';
+  self.login = login;
+
+  function login(){
+    $http.post('/login', self.newSession)
+      .then(function(response){
+        // something
+      });
+  }
 }
 
 function SignupController($http){
