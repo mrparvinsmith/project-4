@@ -4,9 +4,13 @@
   <title>Welcome</title>
 </head>
 <body>
-  {{1+1}}
+  <p>Greetings number {{1+1}}</p>
+  <a ui-sref="login">login</a>
+  <div ui-view></div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
   <script src="./js/app.js"></script>
+  <script src="./js/welcomeController.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.0/angular-ui-router.min.js"></script>
 </body>
 </html>
