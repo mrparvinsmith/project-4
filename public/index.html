@@ -7,6 +7,7 @@
   <p>Greetings number {{1+1}}</p>
   <div ng-controller="WelcomeController as welcomeCtrl">
     <p>Welcome, {{welcomeCtrl.message}}</p>
+    <button ng-click="welcomeCtrl.seeList()">See user list</button>
     <a ui-sref="login">Login</a>
     <a ui-sref="signup">Sign Up</a>
     <div ui-view></div>

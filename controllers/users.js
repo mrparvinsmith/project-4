@@ -11,9 +11,10 @@ controller.index = function(req, res){
 controller.create = function(req, res){
   var user = new User();
   user.username = req.body.username;
-  user.password = user.encrypt(req.body.password);
+  user.password = req.body.password;
   user.save(function(err){
     if (err) throw err;
+    console.log(user);
     res.json(user);
   });
 };

@@ -1,9 +1,9 @@
 <p>Login {{ctrl.message}}</p>
 <p>{{welcomeCtrl.message}}!</p>
-<form ng-submit="ctrl.login">
+<form ng-submit="ctrl.login()">
   <label>Username</label>
   <input type="text" ng-model="ctrl.newSession.username">
   <label>Password</label>
   <input type="password" ng-model="ctrl.newSession.password">
-  <input type="submit">
+  <input type="submit" value="Login">
 </form>
