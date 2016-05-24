@@ -1,20 +1,17 @@
 angular.module('MyApp')
-  .controller('WelcomeController', WelcomeController)
-  .controller('LoginController', LoginController)
-  .controller('SignupController', SignupController);
+  .controller('WelcomeController', WelcomeController);
 
 WelcomeController.$inject = ['$http'];
-SignupController.$inject = ['$http'];
-LoginController.$inject = ['$http'];
 
 function WelcomeController($http){
   var self = this;
-  self.message = 'bienvenue';
+  self.message = 'connected';
   self.notLoggedIn = true;
   self.seeList = seeList;
+  self.logout = logout;
 
   function seeList(){
-    var token = JSON.parse(localStorage.getItem('token')).data.token;
+    var token = JSON.parse(localStorage.getItem('token')).token;
     console.log(token);
     var config = {headers: {
       'Authorization': 'Bearer ' + token
@@ -24,32 +21,33 @@ function WelcomeController($http){
         console.log(response);
       });
   }
-}
 
-function LoginController($http){
-  var self = this;
-  self.message = 'connected';
+  function logout(){
+    localStorage.clear();
+  }
+
+  // from LoginController
   self.login = login;
 
   function login(){
-    console.log(self.newSession);
     $http.post('/login', self.newSession)
       .then(function(response){
-        localStorage.setItem('token', JSON.stringify(response));
+        localStorage.setItem('token', JSON.stringify(response.data));
         console.log(localStorage.getItem('token'));
       });
   }
-}
 
-function SignupController($http){
-  var self = this;
-  self.message = 'present';
+  // from SignupController
   self.addUser = addUser;
 
   function addUser(){
     $http.post('/api/users', self.new)
       .then(function(response){
-        // something
+        $http.post('/login', self.new)
+          .then(function(response){
+            localStorage.setItem('token', JSON.stringify(response.data));
+            console.log(localStorage.getItem('token'));
+          });
       });
   }
 }

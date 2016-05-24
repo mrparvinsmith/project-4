@@ -5,17 +5,19 @@
 </head>
 <body>
   <p>Greetings number {{1+1}}</p>
-  <div ng-controller="WelcomeController as welcomeCtrl">
-    <p>Welcome, {{welcomeCtrl.message}}</p>
-    <button ng-click="welcomeCtrl.seeList()">See user list</button>
+  <div ng-controller="WelcomeController as ctrl">
+    <p>Welcome, {{ctrl.message}}</p>
+    <button ng-click="ctrl.seeList()">See user list</button>
     <a ui-sref="login">Login</a>
     <a ui-sref="signup">Sign Up</a>
+    <a ng-click="ctrl.logout()" ui-sref="login">Logout</a>
+    <a href="/map.html">Go to the app</a>
     <div ui-view></div>
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-  <script src="./js/app.js"></script>
-  <script src="./js/welcomeController.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/welcomeController.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.0/angular-ui-router.min.js"></script>
 </body>
 </html>

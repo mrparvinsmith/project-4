@@ -37,9 +37,11 @@ controller.validateUser = function(req, res, next){
 controller.create = function(req, res, next){
   console.log('creating token');
   var token = jwt.sign({
-    username: req.user.username
+    user: req.user
   }, secret);
-  res.json({token: token, message: 'Hello ' + req.user.username});
+  console.log(token);
+  console.log(token.user);
+  res.json({token: token, username: req.user.username});
 };
 
 controller.verify = function(req, res, next){
@@ -54,6 +56,7 @@ controller.verify = function(req, res, next){
   var token = authHeader.split(' ')[1];
   jwt.verify(token, secret, function(err, decoded){
     if(err) return next(err);
+    // gonna be the user
     req.decoded = decoded;
     next();
   });
