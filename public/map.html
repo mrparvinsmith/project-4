@@ -4,7 +4,15 @@
   <title>Map</title>
 </head>
 <body>
-  {{1+1}}
+
+  <div ng-controller="MapController as ctrl">
+    <div ng-if="ctrl.loggedIn">
+      <h3>Hello {{ctrl.user.username}}</h3>
+    </div>
+
+    <p>You are at: </p>
+
+  </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
   <script src="/js/map.js"></script>

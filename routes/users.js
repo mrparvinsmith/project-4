@@ -7,7 +7,7 @@ router.route('/')
   .get(token.verify, users.index)
   .post(users.create);
 
-router.route('/:id')
+router.route('/:username')
   .get(token.verify, users.show)
   .put(token.verify, users.update)
   .delete(token.verify, users.destroy);

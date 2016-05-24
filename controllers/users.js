@@ -27,14 +27,14 @@ controller.create = function(req, res){
 };
 
 controller.show = function(req, res){
-  User.findById(req.params.id, function(err, user){
+  User.findOne({username: req.params.username}, function(err, user){
     if(err) throw err;
     res.json(user);
   });
 };
 
 controller.update = function(req, res){
-  User.findById(req.params.id, function(err, user){
+  User.findOne({username: req.params.username}, function(err, user){
     if(err) throw err;
     req.body.routes.forEach(function(route){
       user.favorites.routes.push(route);
@@ -56,7 +56,7 @@ controller.update = function(req, res){
 };
 
 controller.destroy = function(req, res){
-  User.findByIdAndRemove(req.params.id, function(err){
+  User.findOneAndRemove({username: req.params.username}, function(err){
     if(err) throw err;
     res.json({message: 'User deleted'});
   });
