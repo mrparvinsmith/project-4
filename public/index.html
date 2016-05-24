@@ -8,11 +8,17 @@
   <div ng-controller="WelcomeController as ctrl">
     <p>Welcome, {{ctrl.message}}</p>
     <button ng-click="ctrl.seeList()">See user list</button>
-    <a ui-sref="login">Login</a>
-    <a ui-sref="signup">Sign Up</a>
-    <a ng-click="ctrl.logout()" ui-sref="login">Logout</a>
-    <a href="/map.html">Go to the app</a>
-    <div ui-view></div>
+    <div ng-if="!ctrl.loggedIn">
+      <a ui-sref="login">Login</a>
+      <a ui-sref="signup">Sign Up</a>
+      <a href="/map.html">Continue as a guest</a>
+      <p ng-model="ctrl.error">{{ctrl.error}}</p>
+      <div ui-view></div>
+    </div>
+    <div ng-if="ctrl.loggedIn">
+      <a ng-click="ctrl.logout()" ui-sref="login">Logout</a>
+      <a href="/map.html">Go to the app</a>
+    </div>
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>

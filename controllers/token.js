@@ -39,8 +39,6 @@ controller.create = function(req, res, next){
   var token = jwt.sign({
     user: req.user
   }, secret);
-  console.log(token);
-  console.log(token.user);
   res.json({token: token, username: req.user.username});
 };
 

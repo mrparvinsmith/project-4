@@ -9,14 +9,21 @@ controller.index = function(req, res){
 };
 
 controller.create = function(req, res){
-  var user = new User();
-  user.username = req.body.username;
-  user.password = req.body.password;
-  user.save(function(err){
-    if (err) throw err;
-    console.log(user);
-    res.json(user);
-  });
+  User.findOne({username: req.body.username})
+    .then(function(currentUser){
+      if(currentUser){
+        res.json({error: 'That user name is already taken.'});
+      } else {
+        var user = new User();
+        user.username = req.body.username;
+        user.password = req.body.password;
+        user.save(function(err){
+          if (err) throw err;
+          console.log(user);
+          res.json(user);
+        });
+      }
+    });
 };
 
 controller.show = function(req, res){

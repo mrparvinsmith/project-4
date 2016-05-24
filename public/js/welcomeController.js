@@ -6,9 +6,16 @@ WelcomeController.$inject = ['$http'];
 function WelcomeController($http){
   var self = this;
   self.message = 'connected';
-  self.notLoggedIn = true;
   self.seeList = seeList;
+  self.login = login;
   self.logout = logout;
+  self.addUser = addUser;
+
+  if(JSON.parse(localStorage.getItem('token'))){
+    self.loggedIn = true;
+  } else {
+    self.loggedIn = false;
+  }
 
   function seeList(){
     var token = JSON.parse(localStorage.getItem('token')).token;
@@ -22,32 +29,35 @@ function WelcomeController($http){
       });
   }
 
-  function logout(){
-    localStorage.clear();
-  }
-
-  // from LoginController
-  self.login = login;
-
   function login(){
     $http.post('/login', self.newSession)
       .then(function(response){
+        console.log(response.data);
         localStorage.setItem('token', JSON.stringify(response.data));
-        console.log(localStorage.getItem('token'));
+        self.loggedIn = true;
+        self.newSession = {};
       });
   }
 
-  // from SignupController
-  self.addUser = addUser;
+  function logout(){
+    localStorage.clear();
+    self.loggedIn = false;
+  }
 
   function addUser(){
+    self.error = '';
     $http.post('/api/users', self.new)
       .then(function(response){
-        $http.post('/login', self.new)
-          .then(function(response){
-            localStorage.setItem('token', JSON.stringify(response.data));
-            console.log(localStorage.getItem('token'));
-          });
+        if(response.data.error){
+          self.error = response.data.error;
+        } else {
+          $http.post('/login', self.new)
+            .then(function(response){
+              localStorage.setItem('token', JSON.stringify(response.data));
+              self.loggedIn = true;
+              self.new = {};
+            });
+        }
       });
   }
 }
