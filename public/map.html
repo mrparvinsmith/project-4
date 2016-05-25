@@ -4,13 +4,24 @@
   <title>Map</title>
 </head>
 <body>
-
+  <a href="/">Home</a>
   <div ng-controller="MapController as ctrl">
     <div ng-if="ctrl.loggedIn">
       <h3>Hello {{ctrl.user.username}}</h3>
     </div>
+    <div ng-if="ctrl.positionUnknown">
+      <p>We could not get your location. Please tell us below.</p>
+    </div>
+    <form ng-submit="ctrl.changeLocation()">
+      <label>Where would you like to look?</label>
+      <input type="text" placeholder="123 Fake St, Santa Monica, CA 90401" ng-model="ctrl.newLocation">
+    </form>
+    <div>Looking at: {{ctrl.location[0]}}</div>
 
-    <p>You are at: </p>
+    <label>Garages:</label>
+    <input type="checkbox" ng-model="ctrl.search.garages"><span>{{ctrl.search.garages}}</span>
+    <label>Metro:</label>
+    <input type="checkbox">
 
   </div>
 
