@@ -16,12 +16,16 @@
       <label>Where would you like to look?</label>
       <input type="text" placeholder="123 Fake St, Santa Monica, CA 90401" ng-model="ctrl.newLocation">
     </form>
-    <div>Looking at: {{ctrl.location[0]}}</div>
-
-    <label>Garages:</label>
-    <input type="checkbox" ng-model="ctrl.search.garages"><span>{{ctrl.search.garages}}</span>
-    <label>Metro:</label>
-    <input type="checkbox">
+    <button ng-click="ctrl.getLocation()">Use current location</button>
+    <br>
+    <div ng-if="ctrl.location">Looking at: {{ctrl.location}}</div>
+    <br>
+    <br>
+    <button ng-click="ctrl.searchGarages()">Parking Garages</button>
+    <button ng-click="ctrl.searchMetro()">Metro</button>
+    <ul ng-if="ctrl.garages[0]">Garages:
+      <li ng-repeat="garage in ctrl.garages">{{garage.name}}: {{garage.street_address}}</li>
+    </ul>
 
   </div>
 
