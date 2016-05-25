@@ -6,6 +6,7 @@ MapController.$inject = ['$http'];
 function MapController($http){
   var self = this;
   self.location = '';
+  self.coordinates = {};
   self.garages = [];
   self.metroStations = [];
   self.changeLocation = changeLocation;
@@ -33,6 +34,7 @@ function MapController($http){
       navigator.geolocation.getCurrentPosition(function(position) {
         var location = position.coords.latitude + ', '  + position.coords.longitude;
         self.location = location;
+        self.coordinates = {lat: position.coords.latitue, lng: position.coords.longitude};
         console.log(self.location);
         return self.location;
       });
@@ -54,7 +56,11 @@ function MapController($http){
   }
 
   function searchMetro(){
-    self.metro = [];
+    self.metroStations = [];
+    $http.get('/api/stations')
+      .then(function(response){
+        console.log(response);
+      });
   }
 
   // setting up interval

@@ -1,25 +1,27 @@
-// var fs = require('fs');
-// var parse = require('csv-parse');
+var db = require('./config/db');
+var Station = require('./models/station');
+var fs = require('fs');
+var parse = require('csv-parse');
 
-// var csvData=[];
-// fs.createReadStream('./data/stops.txt')
-//     .pipe(parse({delimiter: ':'}))
-//     .on('data', function(csvrow) {
-//         console.log(csvrow);
-//         //do something with csvrow
-//         csvData.push(csvrow);
-//     })
-//     .on('end',function() {
-//       //do something wiht csvData
-//       console.log(csvData);
-//     });
+Station.remove({})
+    // .then(function(){
+    //     console.log('ending');
+    //     return;
+    // })
+    .then(function(){
+        var holder = [];
 
-fs = require('fs');
-parse = require('csv-parse');
-
-// Using the first line of the CSV data to discover the column names
-rs = fs.createReadStream('./data/stops.txt');
-parser = parse({columns: true}, function(err, data){
-  console.log(data);
-});
-rs.pipe(parser);
+        // Using the first line of the CSV data to discover the column names
+        var rs = fs.createReadStream('./data/stops.txt');
+        var parser = parse({columns: true}, function(err, data){
+            console.log('parsing');
+            console.log(data.length);
+            holder = data;
+            console.log(data[5]);
+            Station.create(holder, function(err, stations){
+                console.log(stations);
+                process.exit();
+            });
+        });
+        return rs.pipe(parser);
+    });

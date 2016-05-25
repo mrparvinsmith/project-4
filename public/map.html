@@ -2,10 +2,15 @@
 <html ng-app="Map">
 <head>
   <title>Map</title>
+  <style>
+    #map {
+      height: 200px;
+    }
+  </style>
 </head>
-<body>
+<body ng-controller="MapController as ctrl">
   <a href="/">Home</a>
-  <div ng-controller="MapController as ctrl">
+  <div>
     <div ng-if="ctrl.loggedIn">
       <h3>Hello {{ctrl.user.username}}</h3>
     </div>
@@ -23,14 +28,24 @@
     <br>
     <button ng-click="ctrl.searchGarages()">Parking Garages</button>
     <button ng-click="ctrl.searchMetro()">Metro</button>
-    <ul ng-if="ctrl.garages[0]">Garages:
-      <li ng-repeat="garage in ctrl.garages">{{garage.name}}: {{garage.street_address}}</li>
-    </ul>
-
+    <br>
+    <div id="map"></div>
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
   <script src="/js/map.js"></script>
   <script src="/js/mapController.js"></script>
+
+  <script>
+    function initMap(){
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 13,
+        center: {lat: 34.0130382, lng: -118.4953826}
+      });
+    }
+  </script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap">
+    </script>
 </body>
 </html>

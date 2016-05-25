@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/', require('./routes/index'));
 app.use('/api/users', require('./routes/users'));
+app.use('/api/stations', require('./routes/stations'));
 
 var port = process.env.PORT || 3000;
 app.listen(port, function(){
