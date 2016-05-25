@@ -47,7 +47,6 @@ function MapController($http){
     var garageAcceptHeader = {headers: {'Accept': 'application/json'}};
     $http.get('https://parking.api.smgov.net/lots')
       .then(function(response){
-        console.log(response);
         response.data.forEach(function(garage){
           self.garages.push(garage);
         });
