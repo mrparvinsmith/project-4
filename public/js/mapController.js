@@ -15,6 +15,17 @@ function MapController($http, GMapFactory){
   self.searchGarages = searchGarages;
   self.searchMetro = searchMetro;
 
+  // self.mapsLink = "https://maps.googleapis.com/maps/api/js?key=" + d;
+  // function getMapKey(){
+  //   $http.get('/api/stations/gmap')
+  //     .then(function(response){
+  //       console.log('$http map key search done');
+  //       console.log(response);
+  //       self.mapsLink = "https://maps.googleapis.com/maps/api/js?key=" + response.data.key;
+  //     });
+  // }
+  // getMapKey();
+
   if(JSON.parse(localStorage.getItem('token'))){
     self.loggedIn = true;
     var username = JSON.parse(localStorage.getItem('token')).username;
@@ -38,7 +49,7 @@ function MapController($http, GMapFactory){
         self.coordinates = {lat: position.coords.latitude, lng: position.coords.longitude};
         console.log(self.location);
         self.map.initialize(self.coordinates);
-        return self.location;
+        // return self.location;
       });
     } else {
       self.positionUnknown = true;

@@ -8,4 +8,7 @@ router.route('/')
 router.route('/:id')
   .get(controller.show);
 
+// router.route('/gmap')
+//   .get(controller.gmap);
+
 module.exports = router;
