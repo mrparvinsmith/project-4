@@ -65,6 +65,36 @@ function GMapFactory(){
       map: map,
       icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
     });
+    if(garages){
+      garages.forEach(function(garage){
+        var garageMarker = new google.maps.Marker({
+          position: garage.latlon,
+          map: map,
+          icon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
+        });
+
+        // add event listener on each marker for clicks to show message
+        google.maps.event.addListener(garageMarker, 'click', function(event){
+          currentSelectedMarker = garage;
+          garage.message.open(map, garageMarker);
+        });
+      });
+    }
+    if(metroStops){
+      metroStops.forEach(function(metroStop){
+        var metroStopMarker = new google.maps.Marker({
+          position: metroStop.latlon,
+          map: map,
+          icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+        });
+
+        // add event listener on each marker for clicks to show message
+        google.maps.event.addListener(metroStopMarker, 'click', function(event){
+          currentSelectedMarker = metroStop;
+          metroStop.message.open(map, metroStopMarker);
+        });
+      });
+    }
   };
 
  mapFactory.refresh = function(coords, garages, metroStops){
