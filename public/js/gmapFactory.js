@@ -5,29 +5,55 @@ function GMapFactory(){
   var mapFactory = {};
 
   // function to create map points for garages
-  var makeGarageMarkers = function(garages){
-    var list = [];
-    garages.forEach(function(garage){
-      var contentString =
-        '<p><b>Name</b>: ' + garage.name +
-        '<br><b>Address</b>: ' + garage.street_address +
-        '<br><b>Available Spaces</b>: ' + garage.available_spaces +
-        '</p>';
-      list.push({
-        latlon: new google.maps.LatLng(garage.latitude, garage.longitude),
-        message: new google.maps.InfoWindow({
-          content: contentString,
-          maxWidth: 300
-        }),
-        name: garage.name,
-        address: garage.street_address,
-        spacesAvailable: garage.available_spaces
+  var makeGarageList = function(garages){
+    if(garages[0]){
+      var list = [];
+      garages.forEach(function(garage){
+        var contentString =
+          '<p><b>Name</b>: ' + garage.name +
+          '<br><b>Address</b>: ' + garage.street_address +
+          '<br><b>Available Spaces</b>: ' + garage.available_spaces +
+          '</p>';
+        list.push({
+          latlon: new google.maps.LatLng(garage.latitude, garage.longitude),
+          message: new google.maps.InfoWindow({
+            content: contentString,
+            maxWidth: 200
+          }),
+          name: garage.name,
+          address: garage.street_address,
+          spacesAvailable: garage.available_spaces
+        });
       });
-    });
-    return list;
+      return list;
+    }
   };
 
-  mapFactory.initialize = function(coords){
+  // function to create map points for metro stops
+  var makeMetroList = function(metroStops){
+    if(metroStops[0]){
+      var list = [];
+      metroStops.forEach(function(metroStop){
+        var contentString =
+          '<p><b>Name</b>: ' + metroStop.stop_name +
+          // '<br><b>Available Spaces</b>: ' + metroStop.available_spaces +
+          '</p>';
+        list.push({
+          latlon: new google.maps.LatLng(metroStop.stop_lat, metroStop.stop_lon),
+          message: new google.maps.InfoWindow({
+            content: contentString,
+            maxWidth: 200
+          }),
+          name: metroStop.stop_name,
+          // address: metroStop.street_address,
+          // spacesAvailable: metroStop.available_spaces
+        });
+      });
+      return list;
+    }
+  };
+
+  var initialize = function(coords, garages, metroStops){
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 14,
       center: coords
@@ -42,7 +68,9 @@ function GMapFactory(){
   };
 
  mapFactory.refresh = function(coords, garages, metroStops){
-    // stuff
+    var garageList = makeGarageList(garages);
+    var metroList = makeMetroList(metroStops);
+    initialize(coords, garageList, metroList);
   };
 
   return mapFactory;

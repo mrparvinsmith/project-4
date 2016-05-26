@@ -10,9 +10,9 @@
     <input type="text" placeholder="123 Fake St, Santa Monica, CA 90401" ng-model="mapCtrl.newLocation">
   </form>
   <button ng-click="mapCtrl.getLocation()">Use current location</button>
-  <div>Looking at: {{mapCtrl.location}}</div>
+  <div class="looking">Looking at: {{mapCtrl.location}}</div>
   <button ng-click="mapCtrl.searchGarages()">Parking Garages</button>
   <button ng-click="mapCtrl.searchMetro()">Metro</button>
   <br>
-  <div id="map"></div>
+  <div class="looking" id="map"></div>
 </div>

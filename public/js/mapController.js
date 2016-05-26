@@ -37,7 +37,7 @@ function MapController($http, GMapFactory){
         self.location = location;
         self.coordinates = {lat: position.coords.latitude, lng: position.coords.longitude};
         console.log(self.location);
-        self.map.initialize(self.coordinates);
+        self.map.refresh(self.coordinates, self.garages, self.metroStations);
         // return self.location;
       });
     } else {

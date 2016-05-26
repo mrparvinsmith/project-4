@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
-<body>
-  <div ng-controller="WelcomeController as ctrl">
+<body ng-controller="WelcomeController as ctrl">
+  <div class="header">
     <p>Welcome</p>
     <button ng-click="ctrl.seeList()">See user list</button>
     <div ng-if="!ctrl.loggedIn">
@@ -19,8 +19,9 @@
       <a ng-click="ctrl.logout()" ui-sref="login">Logout</a>
       <a ui-sref="map">Go to the app</a>
     </div>
-    <div ui-view></div>
   </div>
+
+  <div ui-view></div>
 
 
   <script src="https://maps.googleapis.com/maps/api/js?key=<%= api_key %>"></script>
