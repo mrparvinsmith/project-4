@@ -8,32 +8,32 @@
     }
   </style>
 </head>
-<body ng-controller="MapController as ctrl">
+<body ng-controller="MapController as mapCtrl">
   <a href="/">Home</a>
   <div>
-    <div ng-if="ctrl.loggedIn">
-      <h3>Hello {{ctrl.user.username}}</h3>
+    <div ng-if="mapCtrl.loggedIn">
+      <h3>Hello {{mapCtrl.user.username}}</h3>
     </div>
-    <div ng-if="ctrl.positionUnknown">
+    <div ng-if="mapCtrl.positionUnknown">
       <p>We could not get your location. Please tell us below.</p>
     </div>
-    <form ng-submit="ctrl.changeLocation()">
+    <form ng-submit="mapCtrl.changeLocation()">
       <label>Where would you like to look?</label>
-      <input type="text" placeholder="123 Fake St, Santa Monica, CA 90401" ng-model="ctrl.newLocation">
+      <input type="text" placeholder="123 Fake St, Santa Monica, CA 90401" ng-model="mapCtrl.newLocation">
     </form>
-    <button ng-click="ctrl.getLocation()">Use current location</button>
+    <button ng-click="mapCtrl.getLocation()">Use current location</button>
     <br>
-    <div>Looking at: {{ctrl.location}}</div>
+    <div>Looking at: {{mapCtrl.location}}</div>
     <br>
     <br>
-    <button ng-click="ctrl.searchGarages()">Parking Garages</button>
-    <button ng-click="ctrl.searchMetro()">Metro</button>
+    <button ng-click="mapCtrl.searchGarages()">Parking Garages</button>
+    <button ng-click="mapCtrl.searchMetro()">Metro</button>
     <br>
     <div id="map"></div>
   </div>
 
   <!-- didn't work -->
-  <!-- <script ng-src="{{ctrl.mapsLink}}"></script> -->
+  <!-- <script ng-src="{{mapCtrl.mapsLink}}"></script> -->
 
   <!-- works with api key in it, but shouldn't put api key in -->
   <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY"></script>

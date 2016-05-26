@@ -12,5 +12,10 @@ function configuration($stateProvider, $urlRouterProvider){
     .state('signup', {
       url: '/signup',
       templateUrl: 'partials/signup.html',
+    })
+    .state('map', {
+      url: '/map',
+      templateUrl: 'partials/map-partial.html',
+      controller: 'MapController as mapCtrl'
     });
 }

@@ -1,0 +1,21 @@
+<div>
+  <div ng-if="mapCtrl.loggedIn">
+    <h3>Hello {{mapCtrl.user.username}}</h3>
+  </div>
+  <div ng-if="mapCtrl.positionUnknown">
+    <p>We could not get your location. Please tell us below.</p>
+  </div>
+  <form ng-submit="mapCtrl.changeLocation()">
+    <label>Where would you like to look?</label>
+    <input type="text" placeholder="123 Fake St, Santa Monica, CA 90401" ng-model="mapCtrl.newLocation">
+  </form>
+  <button ng-click="mapCtrl.getLocation()">Use current location</button>
+  <br>
+  <div>Looking at: {{mapCtrl.location}}</div>
+  <br>
+  <br>
+  <button ng-click="mapCtrl.searchGarages()">Parking Garages</button>
+  <button ng-click="mapCtrl.searchMetro()">Metro</button>
+  <br>
+  <div id="map"></div>
+</div>

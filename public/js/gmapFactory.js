@@ -1,4 +1,4 @@
-angular.module('Map')
+angular.module('MyApp')
   .factory('GMapFactory', GMapFactory);
 
 function GMapFactory(){

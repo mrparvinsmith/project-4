@@ -5,23 +5,28 @@
 </head>
 <body>
   <div ng-controller="WelcomeController as ctrl">
-    <p>Welcome, {{ctrl.message}}</p>
+    <p>Welcome</p>
     <button ng-click="ctrl.seeList()">See user list</button>
     <div ng-if="!ctrl.loggedIn">
       <a ui-sref="login">Login</a>
       <a ui-sref="signup">Sign Up</a>
-      <a href="/map.html">Continue as a guest</a>
+      <a ui-sref="map">Continue as a guest</a>
       <p ng-model="ctrl.error">{{ctrl.error}}</p>
       <div ui-view></div>
     </div>
     <div ng-if="ctrl.loggedIn">
       <a ng-click="ctrl.logout()" ui-sref="login">Logout</a>
-      <a href="/map.html">Go to the app</a>
+      <a ui-sref="map">Go to the app</a>
     </div>
   </div>
 
+  <!-- works with api key in it, but shouldn't put api key in -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY"></script>
+
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
   <script src="/js/app.js"></script>
+  <script src="/js/gmapFactory.js"></script>
+  <script src="/js/mapController.js"></script>
   <script src="/js/welcomeController.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.0/angular-ui-router.min.js"></script>
 </body>

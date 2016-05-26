@@ -1,4 +1,4 @@
-angular.module('Map')
+angular.module('MyApp')
   .controller('MapController', MapController);
 
 MapController.$inject = ['$http', 'GMapFactory'];
@@ -14,17 +14,6 @@ function MapController($http, GMapFactory){
   self.getLocation = getLocation;
   self.searchGarages = searchGarages;
   self.searchMetro = searchMetro;
-
-  // self.mapsLink = "https://maps.googleapis.com/maps/api/js?key=" + d;
-  // function getMapKey(){
-  //   $http.get('/api/stations/gmap')
-  //     .then(function(response){
-  //       console.log('$http map key search done');
-  //       console.log(response);
-  //       self.mapsLink = "https://maps.googleapis.com/maps/api/js?key=" + response.data.key;
-  //     });
-  // }
-  // getMapKey();
 
   if(JSON.parse(localStorage.getItem('token'))){
     self.loggedIn = true;
