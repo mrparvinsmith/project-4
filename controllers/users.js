@@ -19,7 +19,6 @@ controller.create = function(req, res){
         user.password = req.body.password;
         user.save(function(err){
           if (err) throw err;
-          console.log(user);
           res.json(user);
         });
       }

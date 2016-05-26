@@ -4,7 +4,6 @@ var controller = {};
 controller.index = function(req, res){
   Station.find({}, function(err, stations){
     if(err) throw err;
-    console.log(stations);
     res.json(stations);
   });
 };

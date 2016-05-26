@@ -1,10 +1,11 @@
 angular.module('Map')
   .controller('MapController', MapController);
 
-MapController.$inject = ['$http'];
+MapController.$inject = ['$http', 'GMapFactory'];
 
-function MapController($http){
+function MapController($http, GMapFactory){
   var self = this;
+  self.map = GMapFactory;
   self.location = '';
   self.coordinates = {};
   self.garages = [];
@@ -36,6 +37,7 @@ function MapController($http){
         self.location = location;
         self.coordinates = {lat: position.coords.latitude, lng: position.coords.longitude};
         console.log(self.location);
+        self.map.initialize(self.coordinates);
         return self.location;
       });
     } else {

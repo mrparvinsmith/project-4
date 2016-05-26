@@ -22,7 +22,6 @@ controller.findUser = function(req, res, next){
 
 controller.validateUser = function(req, res, next){
   req.user.verifyPassword(req.body.password, function(err, valid){
-    console.log(err, valid);
     if(!valid){
       next({
         status: 401,
