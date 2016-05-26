@@ -38,7 +38,6 @@ function MapController($http, GMapFactory){
         self.coordinates = {lat: position.coords.latitude, lng: position.coords.longitude};
         console.log(self.location);
         self.map.refresh(self.coordinates, self.garages, self.metroStations);
-        // return self.location;
       });
     } else {
       self.positionUnknown = true;
@@ -55,6 +54,7 @@ function MapController($http, GMapFactory){
           self.garages.push(garage);
         });
         console.log(self.garages);
+        self.map.refresh(self.coordinates, self.garages, self.metroStations);
       });
   }
 
@@ -74,6 +74,7 @@ function MapController($http, GMapFactory){
           }
         });
         console.log(self.metroStations);
+        self.map.refresh(self.coordinates, self.garages, self.metroStations);
       });
   }
 
