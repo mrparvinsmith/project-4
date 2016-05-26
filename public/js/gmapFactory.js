@@ -29,7 +29,7 @@ function GMapFactory(){
 
   mapFactory.initialize = function(coords){
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 10,
+      zoom: 14,
       center: coords
     });
     // mark location of search

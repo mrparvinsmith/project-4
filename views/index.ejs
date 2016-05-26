@@ -2,11 +2,8 @@
 <html ng-app="MyApp">
 <head>
   <title>Welcome</title>
-  <style>
-    #map {
-      height: 200px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body>
   <div ng-controller="WelcomeController as ctrl">
@@ -25,7 +22,7 @@
     <div ui-view></div>
   </div>
 
-  <!-- works with api key in it, but shouldn't put api key in -->
+
   <script src="https://maps.googleapis.com/maps/api/js?key=<%= api_key %>"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
