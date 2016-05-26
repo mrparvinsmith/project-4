@@ -34,7 +34,7 @@ function MapController($http){
       navigator.geolocation.getCurrentPosition(function(position) {
         var location = position.coords.latitude + ', '  + position.coords.longitude;
         self.location = location;
-        self.coordinates = {lat: position.coords.latitue, lng: position.coords.longitude};
+        self.coordinates = {lat: position.coords.latitude, lng: position.coords.longitude};
         console.log(self.location);
         return self.location;
       });
@@ -52,6 +52,7 @@ function MapController($http){
         response.data.forEach(function(garage){
           self.garages.push(garage);
         });
+        console.log(self.garages);
       });
   }
 
@@ -60,6 +61,17 @@ function MapController($http){
     $http.get('/api/stations')
       .then(function(response){
         console.log(response);
+        var distance = function(originLat, originLon, endLat, endLon){
+          var legA = Math.abs(originLat - endLat);
+          var legB = Math.abs(originLon - endLon);
+          return Math.sqrt((legA * legA) + (legB * legB));
+        };
+        response.data.forEach(function(station){
+          if(distance(self.coordinates.lat, self.coordinates.lng, station.stop_lat, station.stop_lon) < (1/63)){
+            self.metroStations.push(station);
+          }
+        });
+        console.log(self.metroStations);
       });
   }
 

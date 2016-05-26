@@ -32,10 +32,6 @@
     <div id="map"></div>
   </div>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-  <script src="/js/map.js"></script>
-  <script src="/js/mapController.js"></script>
-
   <script>
     function initMap(){
       var map = new google.maps.Map(document.getElementById('map'), {
@@ -44,8 +40,12 @@
       });
     }
   </script>
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap">
-    </script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="/js/map.js"></script>
+  <script src="/js/mapController.js"></script>
+
 </body>
 </html>
