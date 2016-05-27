@@ -15,21 +15,6 @@ function MapController($http, GMapFactory){
   self.searchGarages = searchGarages;
   self.searchMetro = searchMetro;
 
-  if(JSON.parse(localStorage.getItem('token'))){
-    self.loggedIn = true;
-    var username = JSON.parse(localStorage.getItem('token')).username;
-    var token = JSON.parse(localStorage.getItem('token')).token;
-    var config = {
-      headers: {'Authorization': 'Bearer ' + token}
-    };
-    $http.get('/api/users/' + username, config)
-      .then(function(response){
-        self.user = response.data;
-      });
-  } else {
-    self.loggedIn = false;
-  }
-
   function getLocation(){
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(function(position) {
@@ -90,7 +75,6 @@ function MapController($http, GMapFactory){
     console.log(self.location);
     var input = {'address': self.location};
     geocoder.geocode(input, function(results){
-      // console.log(results[0].geometry.location.lat());
       var lat = results[0].geometry.location.lat();
       var lng = results[0].geometry.location.lng();
       self.coordinates = {lat: lat, lng: lng};

@@ -1,7 +1,4 @@
 <div>
-  <div ng-if="mapCtrl.loggedIn">
-    <h3>Hello {{mapCtrl.user.username}}</h3>
-  </div>
   <div ng-if="mapCtrl.positionUnknown">
     <p>We could not get your location. Please tell us below.</p>
   </div>
@@ -11,8 +8,8 @@
   </form>
   <button ng-click="mapCtrl.getLocation()">Use current location</button>
   <div class="looking">Looking at: {{mapCtrl.location}}</div>
-  <button ng-click="mapCtrl.searchGarages()">Parking Garages</button>
-  <button ng-click="mapCtrl.searchMetro()">Metro</button>
+  <button ng-click="mapCtrl.searchGarages()">See Parking Garages</button>
+  <button ng-click="mapCtrl.searchMetro()">See Nearby Metro</button>
   <br>
-  <div class="looking" id="map"></div>
+  <div class="looking" id="map">Loading...</div>
 </div>

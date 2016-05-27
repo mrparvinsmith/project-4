@@ -7,15 +7,15 @@
 </head>
 <body ng-controller="WelcomeController as ctrl">
   <div class="header">
-    <p>Welcome</p>
-    <button ng-click="ctrl.seeList()">See user list</button>
     <div ng-if="!ctrl.loggedIn">
+      <h1>Welcome</h1>
       <a ui-sref="login">Login</a>
       <a ui-sref="signup">Sign Up</a>
       <a ui-sref="map">Continue as a guest</a>
       <p ng-model="ctrl.error">{{ctrl.error}}</p>
     </div>
     <div ng-if="ctrl.loggedIn">
+      <h1>Welcome {{ctrl.username}}</h1>
       <a ng-click="ctrl.logout()" ui-sref="login">Logout</a>
       <a ui-sref="map">Go to the app</a>
     </div>

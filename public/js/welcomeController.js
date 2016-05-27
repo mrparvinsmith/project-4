@@ -11,12 +11,6 @@ function WelcomeController($http){
   self.logout = logout;
   self.addUser = addUser;
 
-  if(JSON.parse(localStorage.getItem('token'))){
-    self.loggedIn = true;
-  } else {
-    self.loggedIn = false;
-  }
-
   function seeList(){
     var token = JSON.parse(localStorage.getItem('token')).token;
     console.log(token);
@@ -35,6 +29,7 @@ function WelcomeController($http){
         console.log(response.data);
         localStorage.setItem('token', JSON.stringify(response.data));
         self.loggedIn = true;
+        self.username = self.newSession.username;
         self.newSession = {};
       });
   }
@@ -42,6 +37,7 @@ function WelcomeController($http){
   function logout(){
     localStorage.clear();
     self.loggedIn = false;
+    self.username = '';
   }
 
   function addUser(){
@@ -55,6 +51,7 @@ function WelcomeController($http){
             .then(function(response){
               localStorage.setItem('token', JSON.stringify(response.data));
               self.loggedIn = true;
+              self.username = self.new.username;
               self.new = {};
             });
         }
