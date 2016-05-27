@@ -19,8 +19,17 @@ controller.edit = function(req, res){
   res.render('edit');
 };
 
-controller.updateAll = function(req, res){
-
+controller.update = function(req, res){
+  Station.findOne({stop_id: req.body.id}, function(err, station){
+    console.log(req.body.id);
+    console.log(req.body.route);
+    station.routes.push(req.body.route);
+    station.save(function(err){
+      if(err) throw err;
+      console.log(station);
+      res.json(station);
+    });
+  });
 };
 
 module.exports = controller;

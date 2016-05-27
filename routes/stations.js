@@ -10,6 +10,6 @@ router.route('/:id')
 
 router.route('/update')
   .get(controller.edit)
-  .put(controller.updateAll);
+  .put(controller.update);
 
 module.exports = router;

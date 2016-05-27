@@ -11,7 +11,8 @@ var stationSchema = new Schema({
   stop_url: String,
   location_type: String,
   parent_station: String,
-  tpis_name: String
+  tpis_name: String,
+  routes: [String]
 });
 
 var Station = mongoose.model('Station', stationSchema);
