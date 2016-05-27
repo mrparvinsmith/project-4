@@ -50,8 +50,6 @@ function GMapFactory(){
             maxWidth: 200
           }),
           name: metroStop.stop_name,
-          // address: metroStop.street_address,
-          // spacesAvailable: metroStop.available_spaces
         });
       });
       return list;
@@ -68,14 +66,14 @@ function GMapFactory(){
     var marker = new google.maps.Marker({
       position: searchLocation,
       map: map,
-      icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+      icon: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
     });
     if(garages){
       garages.forEach(function(garage){
         var garageMarker = new google.maps.Marker({
           position: garage.latlon,
           map: map,
-          icon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
+          icon: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
         });
 
         // add event listener on each marker for clicks to show message
@@ -90,7 +88,7 @@ function GMapFactory(){
         var metroStopMarker = new google.maps.Marker({
           position: metroStop.latlon,
           map: map,
-          icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+          icon: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png'
         });
 
         // add event listener on each marker for clicks to show message

@@ -5,7 +5,7 @@ var thing = {};
 var getRoutes = function(arr){
   arr.forEach(function(station){
     $.ajax({
-      url: 'http://api.metro.net/agencies/lametro/stops/' + station.stop_id + '/routes/',
+      url: 'https://api.metro.net/agencies/lametro/stops/' + station.stop_id + '/routes/',
       type: 'GET',
     })
     .done(function(response) {
