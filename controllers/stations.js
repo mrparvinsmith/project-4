@@ -15,4 +15,12 @@ controller.show = function(req, res){
   });
 };
 
+controller.edit = function(req, res){
+  res.render('edit');
+};
+
+controller.updateAll = function(req, res){
+
+};
+
 module.exports = controller;
