@@ -86,7 +86,17 @@ function MapController($http, GMapFactory){
   function changeLocation(){
     self.location = self.newLocation;
     self.newLocation = '';
+    var geocoder = new google.maps.Geocoder();
     console.log(self.location);
+    var input = {'address': self.location};
+    geocoder.geocode(input, function(results){
+      // console.log(results[0].geometry.location.lat());
+      var lat = results[0].geometry.location.lat();
+      var lng = results[0].geometry.location.lng();
+      self.coordinates = {lat: lat, lng: lng};
+      console.log(self.coordinates);
+      self.map.refresh(self.coordinates, self.garages, self.metroStations);
+    });
   }
 
 }
