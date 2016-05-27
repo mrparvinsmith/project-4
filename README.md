@@ -20,7 +20,7 @@ This app uses the following technologies:
 - CSV-Parse v 1.1.0 to parse General Transit Feed Specification data obtained from the LA Metro  
 - JQuery v 2.2.4 to handle the javascript on the station update page
 
-![Screen Shot](https://github.com/mrparvinsmith/project-4/blobl/master/planning/App_Screen_Shot.png "Screen Shot")
+![Screen Shot](https://github.com/mrparvinsmith/project-4/blob/master/planning/App_Screen_Shot.png)
 
 ---
 ###Planning Materials
@@ -44,3 +44,26 @@ This app uses the following technologies:
 * click the edit button __AND DO NOTHING UNTIL THE NUMBER NEXT TO "success" STOPS GOING UP__ (it should be several thousand by the time it is done)
 	* do this four times, waiting a couple minutes in between so you don't exceed the API request limit
 * go back to [localhost:3000](http://localhost:3000/) and enjoy
+
+---
+###Unsolved Problems
+When getting the user's current location, it doesn't display until another action is taken.
+
+---
+###Routes
+| Route | Method | Authorization Needed |
+|-------|--------|----------------------|
+| /     | GET | none |
+| /#/login | GET | none |
+| /#/signup | GET | none |
+| /#/map | GET | none |
+| /login | POST | none |
+| /update | GET | none |
+| /update | PUT | none |
+| /api/users | GET | jwts |
+| /api/users | POST | none |
+| /api/users/:id | GET | jwts |
+| /api/users/:id | PUT | jwts |
+| /api/users/:id | DELETE | jwts |
+| /api/stations | GET | none |
+| /api/stations/:id | GET | none |
