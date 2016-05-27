@@ -8,4 +8,8 @@ router.route('/')
 router.route('/:id')
   .get(controller.show);
 
+router.route('/update')
+  .get(controller.edit)
+  .put(controller.update);
+
 module.exports = router;
