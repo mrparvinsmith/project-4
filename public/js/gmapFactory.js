@@ -36,7 +36,7 @@ function GMapFactory(){
       metroStops.forEach(function(metroStop){
         var contentString =
           '<p><b>Name</b>: ' + metroStop.stop_name +
-          // '<br><b>Available Spaces</b>: ' + metroStop.available_spaces +
+          '<br><button id="route-link"><b>Routes</b></button>' +
           '</p>';
         list.push({
           latlon: new google.maps.LatLng(metroStop.stop_lat, metroStop.stop_lon),
@@ -55,7 +55,7 @@ function GMapFactory(){
 
   var initialize = function(coords, garages, metroStops){
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 14,
+      zoom: 16,
       center: coords
     });
     // mark location of search

@@ -69,7 +69,7 @@ function MapController($http, GMapFactory){
           return Math.sqrt((legA * legA) + (legB * legB));
         };
         response.data.forEach(function(station){
-          if(distance(self.coordinates.lat, self.coordinates.lng, station.stop_lat, station.stop_lon) < (1/63)){
+          if(distance(self.coordinates.lat, self.coordinates.lng, station.stop_lat, station.stop_lon) < (1/120)){
             self.metroStations.push(station);
           }
         });
