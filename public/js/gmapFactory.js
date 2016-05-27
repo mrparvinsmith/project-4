@@ -34,9 +34,14 @@ function GMapFactory(){
     if(metroStops[0]){
       var list = [];
       metroStops.forEach(function(metroStop){
+        var routeString = '';
+        metroStop.routes.forEach(function(route){
+          routeString += route + ', ';
+        });
         var contentString =
           '<p><b>Name</b>: ' + metroStop.stop_name +
-          '<br><button id="route-link"><b>Routes</b></button>' +
+          '<p><b>Stop Id</b>: ' + metroStop.stop_id +
+          '<br><b>Routes Served</b>: ' + routeString +
           '</p>';
         list.push({
           latlon: new google.maps.LatLng(metroStop.stop_lat, metroStop.stop_lon),
