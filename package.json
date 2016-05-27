@@ -17,13 +17,11 @@
   },
   "homepage": "https://github.com/mrparvinsmith/project-4#readme",
   "dependencies": {
-    "bcrypt": "^0.8.6",
     "body-parser": "^1.15.1",
     "cookie-parser": "^1.4.1",
     "csv-parse": "^1.1.0",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
-    "gulp": "^3.9.1",
     "jsonwebtoken": "^7.0.0",
     "mongoose": "^4.4.19",
     "mongoose-bcrypt": "^1.4.2",
