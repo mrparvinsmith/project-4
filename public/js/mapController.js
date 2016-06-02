@@ -22,6 +22,7 @@ function MapController($http, GMapFactory){
         self.location = location;
         self.coordinates = {lat: position.coords.latitude, lng: position.coords.longitude};
         console.log(self.location);
+        document.getElementById('looking-at').textContent=self.location;
         self.map.refresh(self.coordinates, self.garages, self.metroStations);
       });
     } else {
@@ -70,6 +71,7 @@ function MapController($http, GMapFactory){
 
   function changeLocation(){
     self.location = self.newLocation;
+    document.getElementById('looking-at').textContent=self.location;
     self.newLocation = '';
     var geocoder = new google.maps.Geocoder();
     console.log(self.location);
