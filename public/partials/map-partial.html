@@ -1,5 +1,5 @@
 <div>
-  <div ng-if="mapCtrl.positionUnknown">
+  <!-- <div ng-if="mapCtrl.positionUnknown">
     <p>We could not get your location. Please tell us below.</p>
   </div>
   <form ng-submit="mapCtrl.changeLocation()">
@@ -10,6 +10,37 @@
   <div class="looking">Looking at: <span id="looking-at"></span></div>
   <button ng-click="mapCtrl.searchGarages()">See Parking Garages</button>
   <button ng-click="mapCtrl.searchMetro()">See Nearby Metro</button>
-  <br>
-  <div class="looking" id="map">Loading...</div>
+  <br> -->
+  <div class="map-container">
+    <div class="map" id="map">Loading...</div>
+    <div class="info-bar">
+      <div ng-if="mapCtrl.positionUnknown">
+        <p>We could not get your location. Please tell us below.</p>
+      </div>
+      <form ng-submit="mapCtrl.changeLocation()">
+        <label>Where would you like to look?</label>
+        <input type="text" placeholder="123 Fake St, Santa Monica, CA 90401" ng-model="mapCtrl.newLocation">
+      </form>
+      <button ng-click="mapCtrl.getLocation()">Use current location</button>
+      <hr>
+      <div>Looking at: <br>
+        <span id="looking-at"></span>
+      </div>
+      <hr>
+      <button ng-click="mapCtrl.searchGarages()">See Parking Garages</button>
+      <button ng-click="mapCtrl.searchMetro()">See Nearby Metro</button>
+      <hr>
+      <div id="show-details">
+        <h3 id="name"></h3>
+        <p id="address"></p>
+        <p id="spaces"></p>
+        <p id="routes-checkbox">See routes:
+          <input type="checkbox" ng-model="mapCtrl.showRoutes" id="show-routes">
+        </p>
+        <ul ng-show="mapCtrl.showRoutes">
+          <li ng-repeat="route in mapCtrl.details.routes" class="route">{{route.id}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>

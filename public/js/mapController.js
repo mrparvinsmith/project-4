@@ -15,6 +15,48 @@ function MapController($http, GMapFactory){
   self.searchGarages = searchGarages;
   self.searchMetro = searchMetro;
 
+  function removeElementsByClass(className){
+    var elements = document.getElementsByClassName(className);
+    while(elements.length > 0){
+      elements[0].parentNode.removeChild(elements[0]);
+    }
+  }
+
+  function resetDetails(){
+    self.details = {};
+    self.showRoutes = false;
+    document.getElementById('name').textContent='';
+    document.getElementById('address').textContent='';
+    document.getElementById('spaces').textContent='';
+    document.getElementById('show-routes').checked = false;
+    if(document.getElementsByClassName('route')){
+      removeElementsByClass('route');
+    }
+    document.getElementById('routes-checkbox').style.display = 'none';
+  }
+  resetDetails();
+
+  self.relay = {
+    getGarageDetails: function(garage){
+      resetDetails();
+      self.details = garage;
+      document.getElementById('name').textContent=garage.name;
+      document.getElementById('address').textContent=garage.address;
+      document.getElementById('spaces').textContent='Available spaces: ' + garage.spacesAvailable;
+    },
+    getMetroDetails: function(metroStop){
+      resetDetails();
+      self.details = metroStop;
+      document.getElementById('name').textContent=metroStop.name;
+      document.getElementById('routes-checkbox').style.display = 'initial';
+      $http.get('/api/stations/' + metroStop.stopId)
+        .then(function(response){
+          console.log(response.data);
+          self.details.routes = response.data;
+        });
+    }
+  };
+
   function getLocation(){
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(function(position) {
@@ -23,7 +65,7 @@ function MapController($http, GMapFactory){
         self.coordinates = {lat: position.coords.latitude, lng: position.coords.longitude};
         console.log(self.location);
         document.getElementById('looking-at').textContent=self.location;
-        self.map.refresh(self.coordinates, self.garages, self.metroStations);
+        self.map.refresh(self.coordinates, self.garages, self.metroStations, self.relay);
       });
     } else {
       self.positionUnknown = true;
@@ -40,7 +82,7 @@ function MapController($http, GMapFactory){
           self.garages.push(garage);
         });
         console.log(self.garages);
-        self.map.refresh(self.coordinates, self.garages, self.metroStations);
+        self.map.refresh(self.coordinates, self.garages, self.metroStations, self.relay);
       });
   }
 
@@ -60,7 +102,7 @@ function MapController($http, GMapFactory){
           }
         });
         console.log(self.metroStations);
-        self.map.refresh(self.coordinates, self.garages, self.metroStations);
+        self.map.refresh(self.coordinates, self.garages, self.metroStations, self.relay);
       });
   }
 
@@ -81,7 +123,7 @@ function MapController($http, GMapFactory){
       var lng = results[0].geometry.location.lng();
       self.coordinates = {lat: lat, lng: lng};
       console.log(self.coordinates);
-      self.map.refresh(self.coordinates, self.garages, self.metroStations);
+      self.map.refresh(self.coordinates, self.garages, self.metroStations, self.relay);
     });
   }
 
