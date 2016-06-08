@@ -1,4 +1,5 @@
 var Station = require('../models/station');
+var request = require('request');
 var controller = {};
 
 controller.index = function(req, res){
@@ -9,9 +10,13 @@ controller.index = function(req, res){
 };
 
 controller.show = function(req, res){
-  Station.find({stop_id: req.params.id}, function(err, station){
+  Station.findOne({stop_id: req.params.id}, function(err, station){
     if(err) throw err;
-    res.json(station);
+    request('http://api.metro.net/agencies/lametro/stops/' + station.stop_id + '/routes/',
+      function(error, response, body){
+        if(error) throw error;
+        res.json(JSON.parse(body).items);
+      });
   });
 };
 

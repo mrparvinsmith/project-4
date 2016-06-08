@@ -49,6 +49,11 @@ function MapController($http, GMapFactory){
       self.details = metroStop;
       document.getElementById('name').textContent=metroStop.name;
       document.getElementById('routes-checkbox').style.display = 'initial';
+      $http.get('/api/stations/' + metroStop.stopId)
+        .then(function(response){
+          console.log(response.data);
+          self.details.routes = response.data;
+        });
     }
   };
 
