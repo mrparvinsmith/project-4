@@ -1,9 +1,9 @@
 angular.module('MyApp')
   .controller('WelcomeController', WelcomeController);
 
-WelcomeController.$inject = ['$http'];
+WelcomeController.$inject = ['$http', '$location'];
 
-function WelcomeController($http){
+function WelcomeController($http, $location){
   var self = this;
   self.message = 'connected';
   self.seeList = seeList;
@@ -31,6 +31,7 @@ function WelcomeController($http){
         self.loggedIn = true;
         self.username = self.newSession.username;
         self.newSession = {};
+        $location.path('welcome');
       });
   }
 

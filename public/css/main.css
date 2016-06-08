@@ -1,6 +1,30 @@
 #map {
   height: 65vh;
 }
+
 .looking {
   margin-top: 10px;
+}
+
+.header-block {
+  background-color: rgba(50, 255, 50, 1);
+  /*position: relative;*/
+  width: 100vw;
+}
+
+.header-item {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 0;
+  border-style: groove;
+}
+
+.left {
+  /*position: absolute;
+  left: 3px;*/
+}
+
+.right {
+  /*position: absolute;*/
+  float: right;
 }

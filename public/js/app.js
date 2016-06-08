@@ -2,9 +2,13 @@ angular.module('MyApp', ['ui.router'])
   .config(configuration);
 
 function configuration($stateProvider, $urlRouterProvider){
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/welcome');
 
   $stateProvider
+    .state('welcome', {
+      url:'/welcome',
+      templateUrl: 'partials/welcome.html',
+    })
     .state('login', {
       url:'/login',
       templateUrl: 'partials/login.html',
