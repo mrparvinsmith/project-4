@@ -10,7 +10,7 @@ function GMapFactory(){
       var list = [];
       garages.forEach(function(garage){
         var contentString =
-          '<p><b>Name</b>: ' + garage.name + '</p>';
+          '<p><b>' + garage.name + '</b></p>';
         list.push({
           latlon: new google.maps.LatLng(garage.latitude, garage.longitude),
           message: new google.maps.InfoWindow({
@@ -36,10 +36,10 @@ function GMapFactory(){
           routeString += route + ', ';
         });
         var contentString =
-          '<p><b>Name</b>: ' + metroStop.stop_name +
-          '<p><b>Stop Id</b>: ' + metroStop.stop_id +
-          '<br><b>Routes Served</b>: ' + routeString +
-          '</p>';
+          '<p><b>' + metroStop.stop_name +
+          // '<p><b>Stop Id</b>: ' + metroStop.stop_id +
+          // '<br><b>Routes Served</b>: ' + routeString +
+          '</b></p>';
         list.push({
           latlon: new google.maps.LatLng(metroStop.stop_lat, metroStop.stop_lon),
           message: new google.maps.InfoWindow({
@@ -47,6 +47,8 @@ function GMapFactory(){
             maxWidth: 200
           }),
           name: metroStop.stop_name,
+          stopId: metroStop.stop_id,
+          routes: metroStop.routes
         });
       });
       return list;
@@ -80,7 +82,6 @@ function GMapFactory(){
             currentSelectedMarker.message.close(map);
           }
           currentSelectedMarker = garage;
-          console.log(garage);
           relay.getGarageDetails(garage);
           garage.message.open(map, garageMarker);
         });
@@ -100,6 +101,7 @@ function GMapFactory(){
             currentSelectedMarker.message.close(map);
           }
           currentSelectedMarker = metroStop;
+          relay.getMetroDetails(metroStop);
           metroStop.message.open(map, metroStopMarker);
         });
       });

@@ -50,6 +50,8 @@ This app uses the following technologies:
 
 Heroku won't let me update my database. It requires an API request to LA Metro's server, but their server only responds to http requests while heroku will only allow an https request to third party API's.  
 
+Requires two clicks to get routes to show after switching markers. Switching back to a marker afterwards won't show any unless you click show routes on a different one.  
+
 ---
 ###Routes
 | Route | Method | Authorization Needed |

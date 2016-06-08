@@ -15,12 +15,23 @@ function MapController($http, GMapFactory){
   self.searchGarages = searchGarages;
   self.searchMetro = searchMetro;
 
+  function removeElementsByClass(className){
+    var elements = document.getElementsByClassName(className);
+    while(elements.length > 0){
+      elements[0].parentNode.removeChild(elements[0]);
+    }
+  }
+
   function resetDetails(){
     self.details = {};
     self.showRoutes = false;
     document.getElementById('name').textContent='';
     document.getElementById('address').textContent='';
     document.getElementById('spaces').textContent='';
+    document.getElementById('show-routes').checked = false;
+    if(document.getElementsByClassName('route')){
+      removeElementsByClass('route');
+    }
     document.getElementById('routes-checkbox').style.display = 'none';
   }
   resetDetails();
@@ -32,6 +43,12 @@ function MapController($http, GMapFactory){
       document.getElementById('name').textContent=garage.name;
       document.getElementById('address').textContent=garage.address;
       document.getElementById('spaces').textContent='Available spaces: ' + garage.spacesAvailable;
+    },
+    getMetroDetails: function(metroStop){
+      resetDetails();
+      self.details = metroStop;
+      document.getElementById('name').textContent=metroStop.name;
+      document.getElementById('routes-checkbox').style.display = 'initial';
     }
   };
 
