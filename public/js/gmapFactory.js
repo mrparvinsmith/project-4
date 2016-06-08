@@ -10,10 +10,7 @@ function GMapFactory(){
       var list = [];
       garages.forEach(function(garage){
         var contentString =
-          '<p><b>Name</b>: ' + garage.name +
-          '<br><b>Address</b>: ' + garage.street_address +
-          '<br><b>Available Spaces</b>: ' + garage.available_spaces +
-          '</p>';
+          '<p><b>Name</b>: ' + garage.name + '</p>';
         list.push({
           latlon: new google.maps.LatLng(garage.latitude, garage.longitude),
           message: new google.maps.InfoWindow({
@@ -56,7 +53,7 @@ function GMapFactory(){
     }
   };
 
-  var initialize = function(coords, garages, metroStops){
+  var initialize = function(coords, garages, metroStops, relay){
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 16,
       center: coords
@@ -83,6 +80,8 @@ function GMapFactory(){
             currentSelectedMarker.message.close(map);
           }
           currentSelectedMarker = garage;
+          console.log(garage);
+          relay.getGarageDetails(garage);
           garage.message.open(map, garageMarker);
         });
       });
@@ -107,10 +106,10 @@ function GMapFactory(){
     }
   };
 
- mapFactory.refresh = function(coords, garages, metroStops){
+ mapFactory.refresh = function(coords, garages, metroStops, relay){
     var garageList = makeGarageList(garages);
     var metroList = makeMetroList(metroStops);
-    initialize(coords, garageList, metroList);
+    initialize(coords, garageList, metroList, relay);
   };
 
   return mapFactory;

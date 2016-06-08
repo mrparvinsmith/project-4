@@ -30,6 +30,15 @@
       <button ng-click="mapCtrl.searchGarages()">See Parking Garages</button>
       <button ng-click="mapCtrl.searchMetro()">See Nearby Metro</button>
       <hr>
+      <div id="show-details">
+        <h3 id="name"></h3>
+        <p id="address"></p>
+        <p id="spaces"></p>
+        <p id="routes-checkbox">See routes: <input type="checkbox" ng-model="mapCtrl.showRoutes"></p>
+        <ul ng-show="mapCtrl.showRoutes">
+          <li ng-repeat="route in mapCtrl.details.routes">{{route}}</li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
