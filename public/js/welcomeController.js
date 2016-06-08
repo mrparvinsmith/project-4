@@ -1,9 +1,9 @@
 angular.module('MyApp')
   .controller('WelcomeController', WelcomeController);
 
-WelcomeController.$inject = ['$http'];
+WelcomeController.$inject = ['$http', '$location'];
 
-function WelcomeController($http){
+function WelcomeController($http, $location){
   var self = this;
   self.message = 'connected';
   self.seeList = seeList;
@@ -24,13 +24,19 @@ function WelcomeController($http){
   }
 
   function login(){
+    self.error = '';
     $http.post('/login', self.newSession)
       .then(function(response){
-        console.log(response.data);
-        localStorage.setItem('token', JSON.stringify(response.data));
-        self.loggedIn = true;
-        self.username = self.newSession.username;
-        self.newSession = {};
+        if(response.data.error){
+          self.error = response.data.error;
+        } else {
+          console.log(response.data);
+          localStorage.setItem('token', JSON.stringify(response.data));
+          self.loggedIn = true;
+          self.username = self.newSession.username;
+          self.newSession = {};
+          $location.path('welcome');
+        }
       });
   }
 
@@ -53,6 +59,7 @@ function WelcomeController($http){
               self.loggedIn = true;
               self.username = self.new.username;
               self.new = {};
+              $location.path('welcome');
             });
         }
       });

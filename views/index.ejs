@@ -6,8 +6,8 @@
   <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body ng-controller="WelcomeController as ctrl">
-  <div class="header">
-    <div ng-if="!ctrl.loggedIn">
+  <div class="header-block">
+    <!-- <div ng-if="!ctrl.loggedIn">
       <h1>Welcome</h1>
       <a ui-sref="login">Login</a>
       <a ui-sref="signup">Sign Up</a>
@@ -18,10 +18,17 @@
       <h1>Welcome {{ctrl.username}}</h1>
       <a ng-click="ctrl.logout()" ui-sref="login">Logout</a>
       <a ui-sref="map">Go to the app</a>
+    </div> -->
+    <div class="header-item">
+      <a ui-sref="welcome" class="header-item header-clickable">Home</a>
+    </div>
+    <div ng-if="ctrl.loggedIn" class="header-item right">
+      <p class="header-item">Logged in as {{ctrl.username}}</p>
+      <a ng-click="ctrl.logout()" ui-sref="welcome" class="header-item header-clickable">Logout</a>
     </div>
   </div>
-
-  <div ui-view></div>
+  <p ng-model="ctrl.error" class="error-message">{{ctrl.error}}</p>
+  <div class="partial" ui-view></div>
 
 
   <script src="https://maps.googleapis.com/maps/api/js?key=<%= api_key %>"></script>
