@@ -61,6 +61,7 @@ function GMapFactory(){
       zoom: 16,
       center: coords
     });
+    var currentSelectedMarker ={};
     // mark location of search
     var searchLocation = new google.maps.LatLng(coords.lat, coords.lng);
     var marker = new google.maps.Marker({
@@ -78,6 +79,9 @@ function GMapFactory(){
 
         // add event listener on each marker for clicks to show message
         google.maps.event.addListener(garageMarker, 'click', function(event){
+          if(currentSelectedMarker.message){
+            currentSelectedMarker.message.close(map);
+          }
           currentSelectedMarker = garage;
           garage.message.open(map, garageMarker);
         });
@@ -93,6 +97,9 @@ function GMapFactory(){
 
         // add event listener on each marker for clicks to show message
         google.maps.event.addListener(metroStopMarker, 'click', function(event){
+          if(currentSelectedMarker.message){
+            currentSelectedMarker.message.close(map);
+          }
           currentSelectedMarker = metroStop;
           metroStop.message.open(map, metroStopMarker);
         });

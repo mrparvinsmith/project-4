@@ -47,7 +47,6 @@ This app uses the following technologies:
 
 ---
 ###Unsolved Problems
-When getting the user's current location, it doesn't display until another action is taken.  
 
 Heroku won't let me update my database. It requires an API request to LA Metro's server, but their server only responds to http requests while heroku will only allow an https request to third party API's.  
 
