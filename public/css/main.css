@@ -1,9 +1,22 @@
-#map {
+.map-container {
   height: 65vh;
+  background-color: rgba(50, 50, 255, 0.5);
+  padding: 5px;
+  /*text-align: top;*/
 }
 
-.looking {
-  margin-top: 10px;
+.map {
+  height: 100%;
+  display: inline-block;
+  width: 70%
+}
+
+.info-bar {
+  background-color: white;
+  display: inline-block;
+  width: 29%;
+  vertical-align: top;
+  height: 100%;
 }
 
 .header-block {
