@@ -8,23 +8,20 @@
 
 .header-block {
   background-color: rgba(50, 255, 50, 1);
-  /*position: relative;*/
   width: 100vw;
 }
 
 .header-item {
   display: inline-block;
-  margin: 0 5px;
-  padding: 0;
-  border-style: groove;
-}
-
-.left {
-  /*position: absolute;
-  left: 3px;*/
+  margin: 0;
+  padding: 5px;
+  height: 100%;
 }
 
 .right {
-  /*position: absolute;*/
   float: right;
+}
+
+.partial {
+  text-align: center;
 }

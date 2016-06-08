@@ -7,10 +7,11 @@ controller.findUser = function(req, res, next){
   User.findOne({username: req.body.username})
     .then(function(user){
       if(!user){
-        next({
-          status: 401,
-          message: 'Authentication failed: credentials incorrect'
-        });
+        // next({
+        //   status: 401,
+        //   message: 'Authentication failed: credentials incorrect'
+        // });
+        res.json({error: 'Login credentials incorrect'});
       }
       req.user = user;
       next();
@@ -23,10 +24,11 @@ controller.findUser = function(req, res, next){
 controller.validateUser = function(req, res, next){
   req.user.verifyPassword(req.body.password, function(err, valid){
     if(!valid){
-      next({
-        status: 401,
-        message: 'Authentication failed: credentials incorrect'
-      });
+      // next({
+      //   status: 401,
+      //   message: 'Authentication failed: credentials incorrect'
+      // });
+      res.json({error: 'Login credentials incorrect'});
     } else {
       next();
     }

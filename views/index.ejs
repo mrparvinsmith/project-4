@@ -19,14 +19,16 @@
       <a ng-click="ctrl.logout()" ui-sref="login">Logout</a>
       <a ui-sref="map">Go to the app</a>
     </div> -->
-    <a ui-sref="welcome" class="header-item left">Home</a>
+    <div class="header-item">
+      <a ui-sref="welcome" class="header-item header-clickable">Home</a>
+    </div>
     <div ng-if="ctrl.loggedIn" class="header-item right">
       <p class="header-item">Logged in as {{ctrl.username}}</p>
-      <a ng-click="ctrl.logout()" ui-sref="welcome" class="header-item">Logout</a>
+      <a ng-click="ctrl.logout()" ui-sref="welcome" class="header-item header-clickable">Logout</a>
     </div>
   </div>
-
-  <div ui-view></div>
+  <p ng-model="ctrl.error">{{ctrl.error}}</p>
+  <div class="partial" ui-view></div>
 
 
   <script src="https://maps.googleapis.com/maps/api/js?key=<%= api_key %>"></script>

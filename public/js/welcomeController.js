@@ -24,14 +24,19 @@ function WelcomeController($http, $location){
   }
 
   function login(){
+    self.error = '';
     $http.post('/login', self.newSession)
       .then(function(response){
-        console.log(response.data);
-        localStorage.setItem('token', JSON.stringify(response.data));
-        self.loggedIn = true;
-        self.username = self.newSession.username;
-        self.newSession = {};
-        $location.path('welcome');
+        if(response.data.error){
+          self.error = response.data.error;
+        } else {
+          console.log(response.data);
+          localStorage.setItem('token', JSON.stringify(response.data));
+          self.loggedIn = true;
+          self.username = self.newSession.username;
+          self.newSession = {};
+          $location.path('welcome');
+        }
       });
   }
 
@@ -54,6 +59,7 @@ function WelcomeController($http, $location){
               self.loggedIn = true;
               self.username = self.new.username;
               self.new = {};
+              $location.path('welcome');
             });
         }
       });
