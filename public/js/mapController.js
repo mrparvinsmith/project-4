@@ -51,7 +51,6 @@ function MapController($http, GMapFactory){
       document.getElementById('routes-checkbox').style.display = 'initial';
       $http.get('/api/stations/' + metroStop.stopId)
         .then(function(response){
-          console.log(response.data);
           self.details.routes = response.data;
         });
     }
@@ -63,7 +62,6 @@ function MapController($http, GMapFactory){
         var location = position.coords.latitude + ', '  + position.coords.longitude;
         self.location = location;
         self.coordinates = {lat: position.coords.latitude, lng: position.coords.longitude};
-        console.log(self.location);
         document.getElementById('looking-at').textContent=self.location;
         self.map.refresh(self.coordinates, self.garages, self.metroStations, self.relay);
       });
@@ -81,7 +79,6 @@ function MapController($http, GMapFactory){
         response.data.forEach(function(garage){
           self.garages.push(garage);
         });
-        console.log(self.garages);
         self.map.refresh(self.coordinates, self.garages, self.metroStations, self.relay);
       });
   }
@@ -90,7 +87,6 @@ function MapController($http, GMapFactory){
     self.metroStations = [];
     $http.get('/api/stations')
       .then(function(response){
-        console.log(response);
         var distance = function(originLat, originLon, endLat, endLon){
           var legA = Math.abs(originLat - endLat);
           var legB = Math.abs(originLon - endLon);
@@ -101,7 +97,6 @@ function MapController($http, GMapFactory){
             self.metroStations.push(station);
           }
         });
-        console.log(self.metroStations);
         self.map.refresh(self.coordinates, self.garages, self.metroStations, self.relay);
       });
   }
@@ -116,13 +111,11 @@ function MapController($http, GMapFactory){
     document.getElementById('looking-at').textContent=self.location;
     self.newLocation = '';
     var geocoder = new google.maps.Geocoder();
-    console.log(self.location);
     var input = {'address': self.location};
     geocoder.geocode(input, function(results){
       var lat = results[0].geometry.location.lat();
       var lng = results[0].geometry.location.lng();
       self.coordinates = {lat: lat, lng: lng};
-      console.log(self.coordinates);
       self.map.refresh(self.coordinates, self.garages, self.metroStations, self.relay);
     });
   }

@@ -1,24 +1,12 @@
 <!DOCTYPE html>
 <html ng-app="MyApp">
 <head>
-  <title>Welcome</title>
+  <title>Commutr Helpr</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body ng-controller="WelcomeController as ctrl">
   <div class="header-block">
-    <!-- <div ng-if="!ctrl.loggedIn">
-      <h1>Welcome</h1>
-      <a ui-sref="login">Login</a>
-      <a ui-sref="signup">Sign Up</a>
-      <a ui-sref="map">Continue as a guest</a>
-      <p ng-model="ctrl.error">{{ctrl.error}}</p>
-    </div>
-    <div ng-if="ctrl.loggedIn">
-      <h1>Welcome {{ctrl.username}}</h1>
-      <a ng-click="ctrl.logout()" ui-sref="login">Logout</a>
-      <a ui-sref="map">Go to the app</a>
-    </div> -->
     <div class="header-item">
       <a ui-sref="welcome" class="header-item header-clickable">Home</a>
     </div>

@@ -18,7 +18,7 @@ This app uses the following technologies:
 - EJS v 2.4.1 and Angular v 1.5.5 to render the views  
 - UI-Router v 0.3.0 to handle nested views  
 - CSV-Parse v 1.1.0 to parse General Transit Feed Specification data obtained from the LA Metro  
-- JQuery v 2.2.4 to handle the javascript on the station update page
+- Request v 2.72.0 to handle API calls in the backend  
 
 ![Screen Shot](https://github.com/mrparvinsmith/project-4/blob/master/planning/App_Screen_Shot.png)
 
@@ -38,19 +38,13 @@ This app uses the following technologies:
 * run npm install
 * get `mongod` running in a tab in your terminal
 * run `nodemon` from another tab in your terminal
-* type `node seed.js` in yet another tab in your terminal
-* in your browser go to [localhost:3000/update](http://localhost:3000/update)
-* open up the dev tools window and go to the console panel
-* click the edit button __AND DO NOTHING UNTIL THE NUMBER NEXT TO "success" STOPS GOING UP__ (it should be several thousand by the time it is done)
-	* do this four times, waiting a couple minutes in between so you don't exceed the API request limit
-* go back to [localhost:3000](http://localhost:3000/) and enjoy
+* type `node seed.js` in yet another tab in your terminal and wait (it takes awhile)
+* once you've seeded the database, go to [localhost:3000](http://localhost:3000/) and enjoy
 
 ---
 ###Unsolved Problems
 
-Heroku won't let me update my database. It requires an API request to LA Metro's server, but their server only responds to http requests while heroku will only allow an https request to third party API's.  
-
-Requires two clicks to get routes to show after switching markers. Switching back to a marker afterwards won't show any unless you click show routes on a different one. Possibly fixed?  
+None known currently.
 
 ---
 ###Routes

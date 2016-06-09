@@ -13,7 +13,6 @@ function WelcomeController($http, $location){
 
   function seeList(){
     var token = JSON.parse(localStorage.getItem('token')).token;
-    console.log(token);
     var config = {headers: {
       'Authorization': 'Bearer ' + token
     }};
@@ -30,7 +29,6 @@ function WelcomeController($http, $location){
         if(response.data.error){
           self.error = response.data.error;
         } else {
-          console.log(response.data);
           localStorage.setItem('token', JSON.stringify(response.data));
           self.loggedIn = true;
           self.username = self.newSession.username;
