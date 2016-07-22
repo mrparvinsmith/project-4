@@ -4,10 +4,6 @@ var fs = require('fs');
 var parse = require('csv-parse');
 
 Station.remove({})
-    // .then(function(){
-    //     console.log('ending');
-    //     return;
-    // })
     .then(function(){
         var holder = [];
 
