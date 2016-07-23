@@ -15,7 +15,7 @@ Station.remove({})
             holder = data;
             console.log(data[5]);
             Station.create(holder, function(err, stations){
-                console.log(stations);
+                console.log(stations[3]);
                 process.exit();
             });
         });
